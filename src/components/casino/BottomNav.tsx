@@ -3,14 +3,14 @@ import { cn } from '@/lib/utils';
 
 interface BottomNavProps {
   activeTab: string;
-  setActiveTab: (tab: 'games' | 'tasks' | 'leaderboard' | 'achievements' | 'profile') => void;
+  setActiveTab: (tab: any) => void;
 }
 
 const BottomNav = ({ activeTab, setActiveTab }: BottomNavProps) => {
   const navItems = [
     { id: 'leaderboard', icon: 'Trophy', label: 'Топ' },
-    { id: 'achievements', icon: 'Award', label: 'Достижения' },
-    { id: 'profile', icon: 'User', label: 'Профиль' },
+    { id: 'chat', icon: 'MessageCircle', label: 'Чат' },
+    { id: 'home', icon: 'Home', label: 'Главная' },
     { id: 'games', icon: 'Sparkles', label: 'Игры' },
     { id: 'tasks', icon: 'ListChecks', label: 'Задания' },
   ];
