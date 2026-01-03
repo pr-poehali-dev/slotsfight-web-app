@@ -1,12 +1,46 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import Header from '@/components/casino/Header';
+import BottomNav from '@/components/casino/BottomNav';
+import GamesSection from '@/components/casino/GamesSection';
+import TasksSection from '@/components/casino/TasksSection';
+import LeaderboardSection from '@/components/casino/LeaderboardSection';
+import AchievementsSection from '@/components/casino/AchievementsSection';
+import ProfileSection from '@/components/casino/ProfileSection';
+
+type TabType = 'games' | 'tasks' | 'leaderboard' | 'achievements' | 'profile';
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState<TabType>('games');
+  const [coins, setCoins] = useState(15000);
+  const [rubies, setRubies] = useState(250);
+  const [vipLevel, setVipLevel] = useState(2);
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'games':
+        return <GamesSection coins={coins} rubies={rubies} />;
+      case 'tasks':
+        return <TasksSection coins={coins} setCoins={setCoins} rubies={rubies} setRubies={setRubies} />;
+      case 'leaderboard':
+        return <LeaderboardSection />;
+      case 'achievements':
+        return <AchievementsSection />;
+      case 'profile':
+        return <ProfileSection coins={coins} rubies={rubies} vipLevel={vipLevel} />;
+      default:
+        return <GamesSection coins={coins} rubies={rubies} />;
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen casino-gradient pb-20">
+      <Header coins={coins} rubies={rubies} vipLevel={vipLevel} />
+      
+      <main className="container mx-auto px-4 py-6 animate-fade-in">
+        {renderContent()}
+      </main>
+
+      <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   );
 };
