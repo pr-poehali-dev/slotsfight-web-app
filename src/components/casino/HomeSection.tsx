@@ -2,6 +2,9 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import PromoBanner from './PromoBanner';
+import LiveWins from './LiveWins';
+import ProviderFilter from './ProviderFilter';
 
 interface HomeSectionProps {
   coins: number;
@@ -28,54 +31,7 @@ const HomeSection = ({ coins, rubies, onNavigate }: HomeSectionProps) => {
 
   return (
     <div className="space-y-6 animate-slide-up">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-600 via-orange-600 to-yellow-600 p-8 md:p-12">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 right-10 text-9xl">🎰</div>
-          <div className="absolute bottom-10 left-10 text-7xl">💎</div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[200px] opacity-30">
-            🔥
-          </div>
-        </div>
-
-        <div className="relative z-10 max-w-2xl space-y-6">
-          <div className="flex items-center gap-3">
-            <Badge className="bg-yellow-400 text-black border-none font-bold text-sm px-4 py-1">
-              🔥 НОВИНКА
-            </Badge>
-            <Badge className="bg-black/30 backdrop-blur-sm text-white border-white/30 font-semibold text-sm px-4 py-1">
-              x2 БОНУС
-            </Badge>
-          </div>
-
-          <h1 className="text-4xl md:text-6xl font-heading font-black text-white leading-tight">
-            Лучшие слоты<br />всего мира
-          </h1>
-
-          <p className="text-white/90 text-lg md:text-xl font-medium max-w-lg">
-            Играй бесплатно, выигрывай монеты и рубины, участвуй в турнирах
-          </p>
-
-          <div className="flex flex-wrap gap-4 pt-4">
-            <Button
-              size="lg"
-              className="bg-white text-red-600 hover:bg-gray-100 font-bold text-lg px-8 py-6 shadow-2xl"
-              onClick={() => onNavigate('games')}
-            >
-              <Icon name="Play" size={24} className="mr-2" />
-              Начать играть
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white/20 font-bold text-lg px-8 py-6 backdrop-blur-sm"
-              onClick={() => onNavigate('promo')}
-            >
-              <Icon name="Gift" size={24} className="mr-2" />
-              Получить бонус
-            </Button>
-          </div>
-        </div>
-      </div>
+      <PromoBanner onNavigate={onNavigate} />
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {categories.map((category, index) => (
@@ -95,6 +51,10 @@ const HomeSection = ({ coins, rubies, onNavigate }: HomeSectionProps) => {
           </Card>
         ))}
       </div>
+
+      <LiveWins />
+
+      <ProviderFilter onSelectProvider={(provider) => console.log('Selected:', provider)} />
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
